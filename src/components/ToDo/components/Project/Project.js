@@ -1,6 +1,9 @@
 const Project = (name)=>{
     let tasks = [];
-    return {name,tasks}
+    let addTask = (task)=>{
+        tasks.push(task);
+    };
+    return {addTask,name,tasks}
 };
 
 module.exports = {
