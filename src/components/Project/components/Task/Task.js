@@ -9,7 +9,8 @@ let Task = (description, dueDate, priority)=>{
         let formatted = format(date,'MM/dd/yyyy');
         return {date,formatted}
     })(dueDate);
-    return {description, due, priority}
+    let finished = false;
+    return {description, due, finished, priority}
 };
 
 module.exports = {
