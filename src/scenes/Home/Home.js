@@ -7,31 +7,50 @@ const Home = ((project)=>{
         return node;
     })();
 
-    let table = ((parentNode, project)=>{
-        let obj = Bootstrap.createElement('table',['table','table-dark'],parentNode);
+    let container = ((parentNode, id)=>{
+        let obj = Bootstrap.createElement('div',['container-fluid'],parentNode);
         let node = obj.node;
+        node.id = id;
 
-        let head = ((parentNode, project)=>{
-            let obj = Bootstrap.createElement('thead',[],parentNode);
-            let node = obj.node;
-            let row = ((headers, parentNode)=>{
-                let node = Bootstrap.createElement('tr',['text-capitalize', 'text-center'],parentNode).node;
-                headers.forEach((headText)=>{
-                   let th = document.createElement('th');
-                   th.textContent = headText;
-                   th.scope = 'col';
-                   node.appendChild(th);
-                });
+        let table = ((parentNode, project)=>{
+            let obj = Bootstrap.createElement('table',['table','table-dark'],parentNode);
+            let node = ((node, id)=>{
+                node.id = id;
+                return node;
+            })(obj.node, 'taskTable');
+
+            let head = ((parentNode, project)=>{
+                let obj = Bootstrap.createElement('thead',[],parentNode);
+                let node = obj.node;
+                let row = ((headers, parentNode)=>{
+                    let node = Bootstrap.createElement('tr',['text-capitalize', 'text-center'],parentNode).node;
+                    headers.forEach((headText)=>{
+                        let th = document.createElement('th');
+                        th.textContent = headText;
+                        th.scope = 'col';
+                        node.appendChild(th);
+                    });
+                    return {node}
+                })([project.name],node);
+
                 return {node}
-            })([project.name],node);
+            })(obj.node, project);
+
+            let body = ((parentNode)=>{
+                let node = Bootstrap.createElement('tbody',[],parentNode).node;
+
+                return {node}
+            })(obj.node);
 
             return {node}
-        })(obj.node, project);
+        })(node, project);
 
-        return {node}
-    })(node, project);
+        return {node,table}
 
-    return {node, table}
+    })(node, 'taskTableContainer');
+
+
+    return {node, container}
 })(ToDo.currentProject);
 
 module.exports = {
