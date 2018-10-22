@@ -1,21 +1,25 @@
 const {Project} = require('./components/Project/Project');
-const ToDo = (()=>{
-    let projects = ((defaultProjectName)=>{
-        let list = [Project(defaultProjectName)];
+const ToDo = ((defaultProjectName)=>{
+    let currentProject = Project(defaultProjectName);
+    let projects = (()=>{
+        let list = [currentProject];
         let names = ()=>{
             return list.map((project)=>{
                 return project.name;
             });
         };
         return {list, names}
-    })('inbox');
+    })();
     let addProject = (name)=>{
         let project = Project(name);
         projects.list.push(project);
         return project
     };
-    return {addProject,projects}
-})();
+    let addTask = (description, project = currentProject)=>{
+        project.addTask(description)
+    };
+    return {addProject,addTask,currentProject,projects}
+})('inbox');
 
 module.exports = {
     ToDo:ToDo

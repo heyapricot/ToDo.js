@@ -8,4 +8,9 @@ describe('ToDo',()=>{
         ToDo.addProject(name);
         expect(ToDo.projects.names()).toContain(name);
     });
+    it('can add a Task',()=>{
+        let description = 'test';
+        ToDo.addTask(description);
+        expect(ToDo.currentProject.tasks.descriptions()).toContain(description);
+    });
 });

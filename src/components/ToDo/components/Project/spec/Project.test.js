@@ -1,5 +1,4 @@
 const {Project} = require('../Project');
-const {Task} = require('../components/Task/Task');
 describe('Project',()=>{
     let name = 'test';
     let project = Project(name);
@@ -9,8 +8,8 @@ describe('Project',()=>{
         });
     });
     it('can store a task',()=>{
-        let task = Task('test');
-        project.addTask(task);
-        expect(project.tasks).toContain(task);
+        let description = 'test';
+        project.addTask(description);
+        expect(project.tasks.descriptions()).toContain(description);
     })
 });
