@@ -7,7 +7,7 @@ const Home = ((project)=>{
         return node;
     })();
 
-    let container = ((parentNode, id)=>{
+    let tasksContainer = ((parentNode, id)=>{
         let obj = Bootstrap.createElement('div',['container-fluid'],parentNode);
         let node = obj.node;
         node.id = id;
@@ -42,15 +42,53 @@ const Home = ((project)=>{
                 return {node}
             })(obj.node);
 
-            return {node}
+            return {body,head,node}
         })(node, project);
 
         return {node,table}
 
     })(node, 'taskTableContainer');
 
+    let taskCreator = ((parentNode)=>{
+        let container = ((parentNode, cssClasses, id)=>{
+            let obj = Bootstrap.createElement('div',cssClasses,parentNode);
+            let node = obj.node;
+            node.id = id;
 
-    return {node, container}
+            let row = ((parentNode)=>{
+                let obj = Bootstrap.createElement('div',['row'],parentNode);
+                let node = obj.node;
+                let col = ((parentNode, cssClasses)=>{
+                    let obj = Bootstrap.createElement('div',['col',...cssClasses],parentNode);
+                    let node = obj.node;
+                    let card = ((parentNode, cssClasses)=>{
+                        let obj = Bootstrap.createElement('div', ['card',...cssClasses], parentNode);
+                        let node = obj.node;
+                        let body = ((parentNode)=>{
+                            let obj = Bootstrap.createElement('div',['card-body'],parentNode);
+                            let node = obj.node;
+                            let form = ((parentNode)=>{
+                                let obj = Bootstrap.createElement('form',[],parentNode);
+                                let node = obj.node;
+                                let rows = ((parentNode, rowQuantity)=>{
+                                    let rowHolder = [];
+                                    for(let i = 0; i < rowQuantity; i++){
+                                        let obj = Bootstrap.createElement('div',['form-row'], parentNode)
+                                    }
+                                })(node,2);
+                            })(node);
+                        })(node);
+                        return {node}
+                    })(node, ['border-success', 'bg-dark']);
+                })(node, ['d-flex', 'flex-column']);
+            })(node);
+
+            return {node,row}
+        })(parentNode, ['container-fluid'], 'taskCreatorContainer');
+    })(node);
+
+
+    return {node, tasksContainer}
 })(ToDo.currentProject);
 
 module.exports = {
