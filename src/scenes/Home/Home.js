@@ -72,25 +72,19 @@ const Home = ((project)=>{
                                 let node = obj.node;
                                 let rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'], parentNode)))(node,2);
 
-                                let top = ((row)=>{
-                                    let col = ((parentNode)=>{
-                                        let obj = Bootstrap.createElement('div',['col'],parentNode);
-                                        let node = obj.node;
-                                        let input = ((parentNode, placeHolderText)=>{
-                                            let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-transparent', 'border-success', 'text-light'],parentNode);
-                                            let node = obj.node;
-                                            node.placeholder = placeHolderText;
-                                        })(node, 'Task Description');
-                                    })(row.node);
-                                })(rows[0]);
+                                let inputCssClasses = ['form-control','form-control-sm', 'bg-transparent', 'border-0', 'text-light'];
 
-                                let bottom = ((row)=>{
+                                let top = ((row, placeHolderText, inputCss)=>{
+                                    let col = ((parentNode)=> Bootstrap.createElement('div',['col'],parentNode))(row.node);
+                                    col.input = ((parentNode)=> Bootstrap.createElement('input',inputCss,parentNode))(col.node);
+                                    col.input.node.placeholder = placeHolderText;
+                                    return {col}
+                                })(rows[0], 'Task Description', inputCssClasses);
+
+                                let bottom = ((row, inputCss)=>{
                                     let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
-                                    let dateInput = ((parentNode)=>{
-                                        let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-transparent', 'border-success', 'text-light'],parentNode);
-                                        let node = obj.node;
-                                        node.type = 'Date';
-                                    })(columns[0].node);
+                                    columns[0].dateInput = ((parentNode)=> Bootstrap.createElement('input',inputCss,parentNode))(columns[0].node);
+                                    columns[0].dateInput.node.type = 'Date';
 
                                     let buttonGroup = ((parentNode)=>{
                                         let obj = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],parentNode);
@@ -112,12 +106,12 @@ const Home = ((project)=>{
                                         return obj
                                     })(columns[2].node, 'New Task');
 
-                                })(rows[1]);
+                                })(rows[1], inputCssClasses);
 
                             })(node);
                         })(node);
                         return {node}
-                    })(node, ['border-success', 'bg-transparent']);
+                    })(node, ['border-secondary', 'bg-transparent']);
                 })(node, ['d-flex', 'flex-column', 'justify-content-center']);
             })(node, ['h-100']);
 
