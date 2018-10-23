@@ -3,7 +3,12 @@ let TaskCreator = (()=>{
     let form = Bootstrap.createElement('form',['p-1','card', 'bg-transparent', 'border-secondary']);
     let node = form.node;
     let inputCssClasses = ['form-control','form-control-sm', 'bg-transparent', 'border-0', 'text-light'];
-    form.rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'], parentNode)))(form.node,2);
+    form.rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(
+        (elem,index)=>{
+            let cssClasses = index === 0 ? ['form-row'] : ['form-row','d-flex','justify-content-between'];
+            return Bootstrap.createElement('div',cssClasses, parentNode)
+        }))(form.node,2);
+
     let top = ((row, placeHolderText, inputCss)=>{
         let col = ((parentNode)=> Bootstrap.createElement('div',['col'],parentNode))(row.node);
         col.input = ((parentNode)=> Bootstrap.createElement('input',inputCss,parentNode))(col.node);
@@ -21,7 +26,7 @@ let TaskCreator = (()=>{
         let iconClasses = Array.from(Array(buttonQuantity)).map(()=>['fas','fa-flag']);
         console.log(iconClasses);
 
-        let buttonClasses = ['btn-outline-info','btn-outline-secondary','btn-outline-danger'].map((elem,index)=>index === 1 ? [elem,'border-0','active'] : [elem,'border-0']);
+        let buttonClasses = ['btn-outline-info','btn-outline-warning','btn-outline-danger'].map((elem,index)=>index === 0 ? [elem,'border-0','active'] : [elem,'border-0']);
 
         columns[1].buttonGroup.buttons = ((parentNode, quantity, cssClasses, iconClasses )=> Array.from(Array(quantity)).map(
             (elem,index)=>{
