@@ -85,27 +85,13 @@ const Home = ((project)=>{
                                     let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
                                     columns[0].dateInput = ((parentNode)=> Bootstrap.createElement('input',inputCss,parentNode))(columns[0].node);
                                     columns[0].dateInput.node.type = 'Date';
-
-                                    let buttonGroup = ((parentNode)=>{
-                                        let obj = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],parentNode);
-                                        let node = obj.node;
-                                        let buttons = ((parentNode, quantity, buttonClasses)=> Array.from(Array(quantity)).map((elem,index)=>{
-                                            let cssClasses = buttonClasses[index];
-                                            console.log(cssClasses);
-                                            let obj = Bootstrap.createElement('div',['btn', ...cssClasses],parentNode);
-                                            obj.node.textContent = index;
-                                            console.log(`Elem is: ${elem}, Index is: ${index}`);
-                                        }))(node,3,[['btn-outline-primary'], ['btn-outline-success'], ['btn-outline-danger']]);
-                                        console.log(buttons);
-                                    })(columns[1].node);
-
-                                    let newTaskButton = ((parentNode, textContent)=>{
-                                        let obj = Bootstrap.createElement('div',['btn','btn-success', 'btn-sm'],parentNode);
-                                        let node = obj.node;
-                                        node.textContent = textContent
-                                        return obj
-                                    })(columns[2].node, 'New Task');
-
+                                    columns[1].buttonGroup = ((parentNode)=> Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],parentNode))(columns[1].node);
+                                    columns[1].buttonGroup.buttons = ((parentNode, quantity, buttonClasses)=> Array.from(Array(quantity)).map((elem,index)=>{
+                                        let obj = Bootstrap.createElement('div',['btn', ...buttonClasses[index]],parentNode);
+                                        obj.node.textContent = index;
+                                    }))(columns[1].buttonGroup.node,3,[['btn-outline-primary'], ['btn-outline-success'], ['btn-outline-danger']]);
+                                    columns[2].newTaskButton = ((parentNode)=> Bootstrap.createElement('div',['btn','btn-success', 'btn-sm'],parentNode))(columns[2].node);
+                                    columns[2].newTaskButton.node.textContent = 'New Task';
                                 })(rows[1], inputCssClasses);
 
                             })(node);
