@@ -85,7 +85,7 @@ const Home = ((project)=>{
                                 })(rows[0]);
 
                                 let bottom = ((row)=>{
-                                    let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col'],parentNode)))(row.node,3);
+                                    let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
                                     let dateInput = ((parentNode)=>{
                                         let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
                                         let node = obj.node;
@@ -104,6 +104,13 @@ const Home = ((project)=>{
                                         }))(node,3,[['btn-outline-primary'], ['btn-outline-success'], ['btn-outline-danger']]);
                                         console.log(buttons);
                                     })(columns[1].node);
+
+                                    let newTaskButton = ((parentNode, textContent)=>{
+                                        let obj = Bootstrap.createElement('div',['btn','btn-success', 'btn-sm'],parentNode);
+                                        let node = obj.node;
+                                        node.textContent = textContent
+                                        return obj
+                                    })(columns[2].node, 'New Task');
 
                                 })(rows[1]);
 
