@@ -118,7 +118,7 @@ const Home = ((project)=>{
                         })(node);
                         return {node}
                     })(node, ['border-success', 'bg-dark']);
-                })(node, ['d-flex', 'flex-column']);
+                })(node, ['d-flex', 'flex-column', 'justify-content-center']);
             })(node, ['h-100']);
 
             return {node,row}
