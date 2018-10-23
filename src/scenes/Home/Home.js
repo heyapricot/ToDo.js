@@ -70,26 +70,30 @@ const Home = ((project)=>{
                             let form = ((parentNode)=>{
                                 let obj = Bootstrap.createElement('form',[],parentNode);
                                 let node = obj.node;
-                                let rows = ((parentNode, rowQuantity)=>{
-                                    let rows = Array.from(Array(rowQuantity)).map(()=>{
-                                        return Bootstrap.createElement('div',['form-row'], parentNode);
-                                    });
+                                let rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'], parentNode)))(node,2);
 
-                                    let top = ((row)=>{
-                                        let col = ((parentNode)=>{
-                                            let obj = Bootstrap.createElement('div',['col'],parentNode);
+                                let top = ((row)=>{
+                                    let col = ((parentNode)=>{
+                                        let obj = Bootstrap.createElement('div',['col'],parentNode);
+                                        let node = obj.node;
+                                        let input = ((parentNode, placeHolderText)=>{
+                                            let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
                                             let node = obj.node;
-                                            let input = ((parentNode, placeHolderText)=>{
-                                                let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
-                                                let node = obj.node;
-                                                node.placeholder = placeHolderText;
-                                            })(node, 'Task Description');
-                                        })(row.node);
+                                            node.placeholder = placeHolderText;
+                                        })(node, 'Task Description');
+                                    })(row.node);
+                                })(rows[0]);
 
+                                let bottom = ((row)=>{
+                                    let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col'],parentNode)))(row.node,3);
+                                    let dateInput = ((parentNode)=>{
+                                        let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
+                                        let node = obj.node;
+                                        node.type = 'Date';
+                                    })(columns[0].node);
 
-                                    })(rows[0]);
+                                })(rows[1]);
 
-                                })(node,2);
                             })(node);
                         })(node);
                         return {node}
