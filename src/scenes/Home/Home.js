@@ -55,8 +55,8 @@ const Home = ((project)=>{
             let node = obj.node;
             node.id = id;
 
-            let row = ((parentNode)=>{
-                let obj = Bootstrap.createElement('div',['row'],parentNode);
+            let row = ((parentNode, cssClasses)=>{
+                let obj = Bootstrap.createElement('div',['row', ...cssClasses],parentNode);
                 let node = obj.node;
                 let col = ((parentNode, cssClasses)=>{
                     let obj = Bootstrap.createElement('div',['col',...cssClasses],parentNode);
@@ -119,7 +119,7 @@ const Home = ((project)=>{
                         return {node}
                     })(node, ['border-success', 'bg-dark']);
                 })(node, ['d-flex', 'flex-column']);
-            })(node);
+            })(node, ['h-100']);
 
             return {node,row}
         })(parentNode, ['container-fluid'], 'taskCreatorContainer');
