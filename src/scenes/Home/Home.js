@@ -92,6 +92,19 @@ const Home = ((project)=>{
                                         node.type = 'Date';
                                     })(columns[0].node);
 
+                                    let buttonGroup = ((parentNode)=>{
+                                        let obj = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],parentNode);
+                                        let node = obj.node;
+                                        let buttons = ((parentNode, quantity, buttonClasses)=> Array.from(Array(quantity)).map((elem,index)=>{
+                                            let cssClasses = buttonClasses[index];
+                                            console.log(cssClasses);
+                                            let obj = Bootstrap.createElement('div',['btn', ...cssClasses],parentNode);
+                                            obj.node.textContent = index;
+                                            console.log(`Elem is: ${elem}, Index is: ${index}`);
+                                        }))(node,3,[['btn-outline-primary'], ['btn-outline-success'], ['btn-outline-danger']]);
+                                        console.log(buttons);
+                                    })(columns[1].node);
+
                                 })(rows[1]);
 
                             })(node);
