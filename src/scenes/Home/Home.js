@@ -77,7 +77,7 @@ const Home = ((project)=>{
                                         let obj = Bootstrap.createElement('div',['col'],parentNode);
                                         let node = obj.node;
                                         let input = ((parentNode, placeHolderText)=>{
-                                            let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
+                                            let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-transparent', 'border-success', 'text-light'],parentNode);
                                             let node = obj.node;
                                             node.placeholder = placeHolderText;
                                         })(node, 'Task Description');
@@ -87,7 +87,7 @@ const Home = ((project)=>{
                                 let bottom = ((row)=>{
                                     let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
                                     let dateInput = ((parentNode)=>{
-                                        let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
+                                        let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-transparent', 'border-success', 'text-light'],parentNode);
                                         let node = obj.node;
                                         node.type = 'Date';
                                     })(columns[0].node);
@@ -117,7 +117,7 @@ const Home = ((project)=>{
                             })(node);
                         })(node);
                         return {node}
-                    })(node, ['border-success', 'bg-dark']);
+                    })(node, ['border-success', 'bg-transparent']);
                 })(node, ['d-flex', 'flex-column', 'justify-content-center']);
             })(node, ['h-100']);
 
