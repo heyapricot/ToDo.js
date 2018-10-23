@@ -76,7 +76,17 @@ const Home = ((project)=>{
                                     });
 
                                     let top = ((row)=>{
-                                        let obj = Bootstrap.createElement('div',['col'],row.node);
+                                        let col = ((parentNode)=>{
+                                            let obj = Bootstrap.createElement('div',['col'],parentNode);
+                                            let node = obj.node;
+                                            let input = ((parentNode, placeHolderText)=>{
+                                                let obj = Bootstrap.createElement('input',['form-control','form-control-sm', 'bg-dark', 'border-success', 'text-light'],parentNode);
+                                                let node = obj.node;
+                                                node.placeholder = placeHolderText;
+                                            })(node, 'Task Description');
+                                        })(row.node);
+
+
                                     })(rows[0]);
 
                                 })(node,2);
