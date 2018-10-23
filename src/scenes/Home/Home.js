@@ -71,10 +71,14 @@ const Home = ((project)=>{
                                 let obj = Bootstrap.createElement('form',[],parentNode);
                                 let node = obj.node;
                                 let rows = ((parentNode, rowQuantity)=>{
-                                    let rowHolder = [];
-                                    for(let i = 0; i < rowQuantity; i++){
-                                        let obj = Bootstrap.createElement('div',['form-row'], parentNode)
-                                    }
+                                    let rows = Array.from(Array(rowQuantity)).map(()=>{
+                                        return Bootstrap.createElement('div',['form-row'], parentNode);
+                                    });
+
+                                    let top = ((row)=>{
+                                        let obj = Bootstrap.createElement('div',['col'],row.node);
+                                    })(rows[0]);
+
                                 })(node,2);
                             })(node);
                         })(node);
