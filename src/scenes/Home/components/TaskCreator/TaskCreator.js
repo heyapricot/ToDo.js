@@ -21,7 +21,7 @@ let TaskCreator = (()=>{
         let iconClasses = Array.from(Array(buttonQuantity)).map(()=>['fas','fa-flag']);
         console.log(iconClasses);
 
-        let buttonClasses = ['btn-outline-primary','btn-outline-success','btn-outline-danger'].map((elem)=>[elem,'border-0']);
+        let buttonClasses = ['btn-outline-info','btn-outline-secondary','btn-outline-danger'].map((elem,index)=>index === 1 ? [elem,'border-0','active'] : [elem,'border-0']);
 
         columns[1].buttonGroup.buttons = ((parentNode, quantity, cssClasses, iconClasses )=> Array.from(Array(quantity)).map(
             (elem,index)=>{
@@ -29,8 +29,11 @@ let TaskCreator = (()=>{
                 obj.node.icon = Bootstrap.createElement('i',iconClasses[index],obj.node);
             }))(columns[1].buttonGroup.node,3,buttonClasses, iconClasses);
 
-        columns[2].newTaskButton = ((parentNode)=> Bootstrap.createElement('div',['btn','btn-success', 'btn-sm'],parentNode))(columns[2].node);
-        columns[2].newTaskButton.node.textContent = 'New Task';
+        let newTaskButton = Bootstrap.createElement('div',['btn','btn-success', 'btn-sm', 'rounded-circle'],columns[2].node);
+        let newTaskIcon = Bootstrap.createElement('i',['fas','fa-plus'],newTaskButton.node);
+        newTaskButton.icon = newTaskIcon;
+        columns[2].newTaskButton = newTaskButton;
+
     })(form.rows[1], inputCssClasses);
 
     return {node}
