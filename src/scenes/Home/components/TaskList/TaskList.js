@@ -29,13 +29,16 @@ let TaskList = (()=>{
         description.node.textContent = descriptionText;
         let bottomRow = obj.cell.rows[1];
         bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
-        let date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);
-        date.node.textContent = dateText;
+        bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);
+        bottomRow.date.node.textContent = dateText;
         let buttons = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],bottomRow.column.node);
+        bottomRow.buttons = buttons;
         buttons.remove = Bootstrap.createElement('div',['btn', 'btn-danger'],buttons.node);
         buttons.remove.icon = Bootstrap.createElement('i',['fas','fa-times'],buttons.remove.node);
+        buttons.remove.node.addEventListener('click', ()=>{obj.node.remove()});
         buttons.done = Bootstrap.createElement('div',['btn', 'btn-success'],buttons.node);
         buttons.done.icon = Bootstrap.createElement('i',['fas','fa-check'],buttons.done.node);
+        buttons.done.node.addEventListener('click', ()=>{obj.node.remove()});
         return obj;
     };
 
