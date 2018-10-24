@@ -50,7 +50,7 @@ const Home = ((project)=>{
     let container = Bootstrap.createElement('div',['container'],node);
     container.node.id = 'taskCreatorContainer';
     container.row = Bootstrap.createElement('div',['row','h-100'],container.node);
-    container.row.col = Bootstrap.createElement('div',['col','d-flex', 'flex-column', 'justify-content-center'],container.row.node);
+    container.row.col = Bootstrap.createElement('div',['col','col-sm','d-flex', 'flex-column', 'justify-content-center'],container.row.node);
     container.row.col.node.appendChild(TaskCreator.node);
 
     return {node, tasksContainer}
