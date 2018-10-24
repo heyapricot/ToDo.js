@@ -6,7 +6,7 @@ const Home = ((project)=>{
     node.id = 'main';
 
     let tasksContainer = ((parentNode, id)=>{
-        let obj = Bootstrap.createElement('div',['container-fluid'],parentNode);
+        let obj = Bootstrap.createElement('div',['container'],parentNode);
         let node = obj.node;
         node.id = id;
 
@@ -47,7 +47,7 @@ const Home = ((project)=>{
 
     })(node, 'taskTableContainer');
 
-    let container = Bootstrap.createElement('div',['container-fluid'],node);
+    let container = Bootstrap.createElement('div',['container'],node);
     container.node.id = 'taskCreatorContainer';
     container.row = Bootstrap.createElement('div',['row','h-100'],container.node);
     container.row.col = Bootstrap.createElement('div',['col','d-flex', 'flex-column', 'justify-content-center'],container.row.node);
