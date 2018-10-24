@@ -1,14 +1,13 @@
 const {Bootstrap} = require('../../../Bootstrap/Bootstrap');
 let TaskCard = (descriptionText, dateText)=>{
     const rowQuantity = 2;
-    let obj = Bootstrap.createElement('tr',['card','bg-transparent','border-secondary']);
-    obj.cell = Bootstrap.createElement('td',[],obj.node);
-    obj.cell.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['row'],obj.cell.node));
-    let topRow = obj.cell.rows[0];
+    let obj = Bootstrap.createElement('div',['card','bg-transparent','border-secondary']);
+    obj.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['row'],obj.node));
+    let topRow = obj.rows[0];
     topRow.column = Bootstrap.createElement('div',['col'],topRow.node);
     let description = Bootstrap.createElement('span',[],topRow.column.node);
     description.node.textContent = descriptionText;
-    let bottomRow = obj.cell.rows[1];
+    let bottomRow = obj.rows[1];
     bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
     bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);
     bottomRow.date.node.textContent = dateText;
