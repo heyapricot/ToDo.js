@@ -18,21 +18,24 @@ let TaskList = (()=>{
     };
 
 
-    let TaskCard = (description, date, projectName)=>{
+    let TaskCard = (descriptionText, dateText)=>{
         const rowQuantity = 2;
         let obj = Bootstrap.createElement('tr',['card','bg-transparent','border-secondary']);
         obj.cell = Bootstrap.createElement('td',[],obj.node);
         obj.cell.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['row'],obj.cell.node));
         let topRow = obj.cell.rows[0];
         topRow.column = Bootstrap.createElement('div',['col'],topRow.node);
-        let descriptionHolder = Bootstrap.createElement('span',[],topRow.column.node);
-        descriptionHolder.node.textContent = description;
+        let description = Bootstrap.createElement('span',[],topRow.column.node);
+        description.node.textContent = descriptionText;
         let bottomRow = obj.cell.rows[1];
         bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
-        let dateHolder = Bootstrap.createElement('span',['badge', 'badge-primary'],bottomRow.column.node);
-        let projectNameHolder = Bootstrap.createElement('span',['badge', 'badge-primary'],bottomRow.column.node);
-        dateHolder.node.textContent = date;
-        projectNameHolder.node.textContent = projectName;
+        let date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);
+        date.node.textContent = dateText;
+        let buttons = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],bottomRow.column.node);
+        buttons.remove = Bootstrap.createElement('div',['btn', 'btn-danger'],buttons.node);
+        buttons.remove.icon = Bootstrap.createElement('i',['fas','fa-times'],buttons.remove.node);
+        buttons.done = Bootstrap.createElement('div',['btn', 'btn-success'],buttons.node);
+        buttons.done.icon = Bootstrap.createElement('i',['fas','fa-check'],buttons.done.node);
         return obj;
     };
 
