@@ -10,14 +10,6 @@
     overflow-y: scroll;
 }
 
-#listColumn .row:first-child{
-    height: 10% !important;
-}
-
-#listColumn .row:nth-child(2){
-    height: 90% !important;
-}
-
 #taskCreatorContainer {
     height: 15vh;
 }

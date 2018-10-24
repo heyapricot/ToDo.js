@@ -1,12 +1,12 @@
 const {Bootstrap} = require('../../../Bootstrap/Bootstrap');
 let TaskCard = (descriptionText, dateText)=>{
     const rowQuantity = 2;
-    let obj = Bootstrap.createElement('div',['card','bg-transparent','border-secondary']);
-    obj.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['row'],obj.node));
+    let obj = Bootstrap.createElement('form',['card','p-2','bg-transparent','border-secondary']);
+    obj.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'],obj.node));
     let topRow = obj.rows[0];
     topRow.column = Bootstrap.createElement('div',['col'],topRow.node);
-    let description = Bootstrap.createElement('span',[],topRow.column.node);
-    description.node.textContent = descriptionText;
+    let description = Bootstrap.createElement('input',['form-control', 'form-control-sm', 'bg-transparent', 'border-0', 'text-light'],topRow.column.node);
+    description.node.value = descriptionText;
     let bottomRow = obj.rows[1];
     bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
     bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);

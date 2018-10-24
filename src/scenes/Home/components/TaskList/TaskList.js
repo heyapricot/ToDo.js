@@ -6,7 +6,7 @@ let TaskList = (()=>{
     let column = Bootstrap.createElement('div',['col', 'h-100','d-flex','flex-column'],row.node);
     row.column = column;
     column.node.id = 'listColumn';
-    let head = Bootstrap.createElement('div',['container','text-light','text-capitalize', 'text-center'],column.node);
+    let head = Bootstrap.createElement('div',['container','p-3','text-light','text-capitalize', 'text-center'],column.node);
     let body = Bootstrap.createElement('div',['row'],column.node);
     body.cell = Bootstrap.createElement('div',['col','d-flex','flex-column'],body.node);
 
