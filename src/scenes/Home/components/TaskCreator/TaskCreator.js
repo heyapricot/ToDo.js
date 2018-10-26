@@ -11,11 +11,18 @@ let TaskCreator = (()=>{
         }))(form.node,2);
 
     let top = ((row, placeHolderText, inputCss)=>{
-        let col = ((parentNode)=> Bootstrap.createElement('div',['col'],parentNode))(row.node);
-        col.input = ((parentNode)=> Bootstrap.createElement('input',inputCss,parentNode))(col.node);
-        col.input.node.placeholder = placeHolderText;
-        return {col}
+        let col = Bootstrap.createElement('div',['col'],row.node);
+        row.col = col;
+        col.input = ((parentNode, placeHolderText) => {
+            let obj = Bootstrap.createElement('input', inputCss, parentNode);
+            obj.node.placeholder = placeHolderText;
+            obj.value = ()=>{ return obj.node.value};
+            return obj;
+        })(col.node, placeHolderText);
+        return row;
     })(form.rows[0], 'Task Description', inputCssClasses);
+
+    let description = top.col.input;
 
     let bottom = ((row, inputCss)=>{
         let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
@@ -49,7 +56,11 @@ let TaskCreator = (()=>{
 
     buttons.newTask = newTask;
 
-    return {buttons,node}
+    let getValues = ()=>{
+        return [description.value()]
+    };
+
+    return {buttons,node,getValues}
 })();
 
 module.exports = {
