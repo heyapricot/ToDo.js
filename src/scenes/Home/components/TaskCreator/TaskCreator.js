@@ -19,7 +19,7 @@ let TaskCreator = (()=>{
     let bottom = ((row, inputCss)=>{
         let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
         columns[0].dateInput = Bootstrap.createElement('input',inputCss,columns[0].node);
-        columns[0].dateInput.node.type = 'Date';
+        columns[0].dateInput.node.type = 'date';
         columns[1].buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],columns[1].node);
 
         let buttonQuantity = 3;

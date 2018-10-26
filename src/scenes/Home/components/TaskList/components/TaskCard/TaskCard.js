@@ -9,7 +9,7 @@ let TaskCard = (descriptionText, dateText)=>{
     description.node.value = descriptionText;
     let bottomRow = obj.rows[1];
     bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
-    bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-primary','align-self-center'],bottomRow.column.node);
+    bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-secondary','align-self-center'],bottomRow.column.node);
     bottomRow.date.node.textContent = dateText;
     let buttons = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],bottomRow.column.node);
     bottomRow.buttons = buttons;
