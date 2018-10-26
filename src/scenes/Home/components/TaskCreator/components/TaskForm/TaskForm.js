@@ -1,4 +1,5 @@
 const {Bootstrap} = require('../../../Bootstrap/Bootstrap');
+const {UI} = require('../../../UI/UI');
 const TaskForm = ((inputCss)=>{
     let obj = Bootstrap.createElement('form',['p-1','card', 'bg-transparent', 'border-secondary']);
     let rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(
@@ -26,17 +27,8 @@ const TaskForm = ((inputCss)=>{
         return obj;
     })(rows[1].columns[0].node, inputCss);
 
-
-    let buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],rows[1].columns[1].node);
-    let buttonQuantity = 3;
-    let iconClasses = Array.from(Array(buttonQuantity)).map(()=>['fas','fa-flag']);
-    let buttonClasses = ['btn-outline-info','btn-outline-warning','btn-outline-danger'].map((elem,index)=>index === 0 ? [elem,'border-0','active'] : [elem,'border-0']);
-
-    buttonGroup.buttons = ((parentNode, quantity, cssClasses, iconClasses )=> Array.from(Array(quantity)).map(
-        (elem,index)=>{
-            let obj = Bootstrap.createElement('div',['btn', ...cssClasses[index]],parentNode);
-            obj.node.icon = Bootstrap.createElement('i',iconClasses[index],obj.node);
-        }))(buttonGroup.node,3,buttonClasses, iconClasses);
+    let priorityPicker = UI.priorityPicker(3,['btn-outline-info','btn-outline-warning','btn-outline-danger'],['fas','fa-flag']);
+    rows[1].columns[1].node.appendChild(priorityPicker.node);
 
     let newTask = ((parentNode, cssClasses)=>{
         let obj =  Bootstrap.createElement('div',cssClasses, parentNode);
@@ -46,6 +38,8 @@ const TaskForm = ((inputCss)=>{
 
         return obj;
     })(rows[1].columns[2].node, ['btn','btn-success', 'btn-sm', 'rounded-circle']);
+
+
 
     obj.description = description;
     obj.date = date;
