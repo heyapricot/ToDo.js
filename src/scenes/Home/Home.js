@@ -17,7 +17,7 @@ const Home = ((project)=>{
     container.row.col.node.appendChild(TaskCreator.node);
 
     let testFn = ()=>{console.log('Hellou!')};
-    TaskCreator.buttons.newTask.node.addEventListener('click',testFn);
+    TaskCreator.buttons.newTask.onClick(testFn);
 
     console.log(TaskCreator.buttons.newTask);
 

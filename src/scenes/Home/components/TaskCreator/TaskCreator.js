@@ -38,11 +38,16 @@ let TaskCreator = (()=>{
         return row
     })(form.rows[1], inputCssClasses);
 
-    let newTask = ((parentNode)=>{
-        let obj =  Bootstrap.createElement('div',['btn','btn-success', 'btn-sm', 'rounded-circle'],parentNode);
-        let icon = Bootstrap.createElement('i',['fas','fa-plus'],obj.node);
-        buttons.newTask = obj;
-    })(bottom.columns[2].node);
+    let newTask = ((parentNode, cssClasses)=>{
+        let obj =  Bootstrap.createElement('div',cssClasses, parentNode);
+        obj.icon = Bootstrap.createElement('i',['fas','fa-plus'],obj.node);
+
+        obj.onClick = (callbackfn)=>{obj.node.addEventListener('click',callbackfn)};
+
+        return obj;
+    })(bottom.columns[2].node, ['btn','btn-success', 'btn-sm', 'rounded-circle']);
+
+    buttons.newTask = newTask;
 
     return {buttons,node}
 })();
