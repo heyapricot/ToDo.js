@@ -19,7 +19,7 @@ const Home = ((project)=>{
     let onNewTaskClick = ()=>{
         let taskValues = TaskForm.getValues();
         let task = ToDo.addTask(taskValues[0], taskValues[1]);
-        let tc = TaskList.appendTask(task.description);
+        let tc = TaskList.appendTask(task.description, task.due.formatted);
         console.log(taskValues);
         console.log(ToDo.currentProject.tasks());
     };

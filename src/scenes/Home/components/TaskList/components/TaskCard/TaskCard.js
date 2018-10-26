@@ -1,5 +1,5 @@
 const {Bootstrap} = require('../../../Bootstrap/Bootstrap');
-let TaskCard = (descriptionText, dateText = '10/31/2018')=>{
+let TaskCard = (descriptionText, dateText)=>{
     const rowQuantity = 2;
     let obj = Bootstrap.createElement('form',['card','p-2','bg-transparent','border-secondary']);
     obj.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'],obj.node));

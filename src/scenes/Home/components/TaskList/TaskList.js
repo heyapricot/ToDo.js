@@ -14,14 +14,14 @@ let TaskList = (()=>{
         head.node.textContent = headerText;
     };
 
-    let appendTask = (desciptionText)=>{
-        let tc = TaskCard(desciptionText);
+    let appendTask = (desciptionText, dateText)=>{
+        let tc = TaskCard(desciptionText, dateText);
         body.cell.node.appendChild(tc.node);
         return tc;
     };
 
     let init = (()=>{
-        Array.from(Array(2)).map(()=>appendTask('This is a test'))
+        Array.from(Array(2)).map(()=>appendTask('This is a test', '31/10/2018'))
     })();
 
     return {appendTask,body, head, node, setHeaderText}
