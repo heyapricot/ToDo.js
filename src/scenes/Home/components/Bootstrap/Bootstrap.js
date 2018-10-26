@@ -12,7 +12,15 @@ const Bootstrap = (()=>{
 
         return {node}
     };
-    return {createElement}
+
+    let Button = (cssClasses, iconClasses, nodeType = 'button')=>{
+        let button =  createElement(nodeType,cssClasses);
+        button.icon = createElement('i',iconClasses,button.node);
+        button.onClick = (callbackfn)=>{button.node.addEventListener('click',callbackfn)};
+        return button;
+    };
+
+    return {Button,createElement}
 })();
 
 module.exports = {

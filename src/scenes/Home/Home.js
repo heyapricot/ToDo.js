@@ -1,5 +1,5 @@
 const {Bootstrap} = require('./components/Bootstrap/Bootstrap');
-const {TaskCreator} = require('./components/TaskCreator/TaskCreator');
+const {TaskForm} = require('./components/TaskForm/TaskForm');
 const {TaskList} = require('./components/TaskList/TaskList');
 const {ToDo} = require('./components/ToDo/ToDo');
 const Home = ((project)=>{
@@ -14,12 +14,12 @@ const Home = ((project)=>{
     container.node.id = 'taskCreatorContainer';
     container.row = Bootstrap.createElement('div',['row','h-100'],container.node);
     container.row.col = Bootstrap.createElement('div',['col','col-sm','d-flex', 'flex-column', 'justify-content-center'],container.row.node);
-    container.row.col.node.appendChild(TaskCreator.node);
+    container.row.col.node.appendChild(TaskForm.node);
 
     let onNewTaskClick = ()=>{
-        console.log(TaskCreator.getValues());
+        console.log(TaskForm.getValues());
     };
-    TaskCreator.buttons.newTask.onClick(onNewTaskClick);
+    TaskForm.newTask.onClick(onNewTaskClick);
 
     return {node, taskListContainer}
 })(ToDo.currentProject);

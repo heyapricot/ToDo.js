@@ -1,6 +1,6 @@
 const {Bootstrap} = require('../Bootstrap/Bootstrap');
 const UI = (()=>{
-    let priorityPicker = (buttonQuantity, buttonCss, iconCss)=>{
+    let PriorityPicker = (buttonQuantity, buttonCss, iconCss)=>{
         let activeButtonIndex = 0;
         let buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm']);
         let buttons = ((parentNode, quantity, cssClasses, iconClasses )=> Array.from(Array(quantity)).map(
@@ -18,11 +18,11 @@ const UI = (()=>{
             [buttons[activeButtonIndex],buttons[index]].forEach((button)=>{button.node.classList.toggle('active')});
             activeButtonIndex = index;
         };
-        let getPriority = ()=> activeButtonIndex;
-        return {buttons,getPriority, node};
+        let value = ()=> activeButtonIndex;
+        return {buttons,node,value};
     };
 
-    return {priorityPicker}
+    return {PriorityPicker}
 })();
 
 module.exports = {
