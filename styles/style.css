@@ -1,3 +1,7 @@
+body {
+    -webkit-overflow-scrolling: touch;
+}
+
 #main {
     background-color: #212529;
 }
@@ -8,6 +12,7 @@
 
 #taskList #listColumn {
     overflow-y: scroll;
+    overflow-scrolling: touch;
 }
 
 #taskCreatorContainer {
