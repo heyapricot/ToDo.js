@@ -14,19 +14,17 @@ let TaskList = (()=>{
         head.node.textContent = headerText;
     };
 
-    let appendRow = (node)=>{
-        body.cell.node.appendChild(node);
+    let appendTask = (desciptionText)=>{
+        let tc = TaskCard(desciptionText);
+        body.cell.node.appendChild(tc.node);
+        return tc;
     };
 
     let init = (()=>{
-        Array.from(Array(14)).map(()=>{
-            let tc = TaskCard('This is a test', '10/31/2018', 'Test');
-            appendRow(tc.node);
-            return tc;
-        })
+        Array.from(Array(2)).map(()=>appendTask('This is a test'))
     })();
 
-    return {body, head, node, setHeaderText}
+    return {appendTask,body, head, node, setHeaderText}
 })();
 
 module.exports = {

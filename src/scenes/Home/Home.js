@@ -17,7 +17,10 @@ const Home = ((project)=>{
     container.row.col.node.appendChild(TaskForm.node);
 
     let onNewTaskClick = ()=>{
-        console.log(TaskForm.getValues());
+        let taskValues = TaskForm.getValues();
+        let task = ToDo.addTask(taskValues[0]);
+        let tc = TaskList.appendTask(task.description);
+        console.log(ToDo.currentProject.tasks());
     };
     TaskForm.newTask.onClick(onNewTaskClick);
 

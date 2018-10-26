@@ -16,7 +16,7 @@ const ToDo = ((defaultProjectName)=>{
         return project
     };
     let addTask = (description, project = currentProject)=>{
-        project.addTask(description)
+        return project.addTask(description)
     };
     return {addProject,addTask,currentProject,projects}
 })('inbox');
