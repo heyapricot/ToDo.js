@@ -3,6 +3,7 @@ let TaskCreator = (()=>{
     let form = Bootstrap.createElement('form',['p-1','card', 'bg-transparent', 'border-secondary']);
     let node = form.node;
     let inputCssClasses = ['form-control','form-control-sm', 'bg-transparent', 'border-0', 'text-light'];
+    let buttons = {};
     form.rows = ((parentNode, rowQuantity)=> Array.from(Array(rowQuantity)).map(
         (elem,index)=>{
             let cssClasses = index === 0 ? ['form-row'] : ['form-row','d-flex','justify-content-between'];
@@ -18,13 +19,13 @@ let TaskCreator = (()=>{
 
     let bottom = ((row, inputCss)=>{
         let columns = ((parentNode, columnQuantity)=> Array.from(Array(columnQuantity)).map(()=>Bootstrap.createElement('div',['col-auto'],parentNode)))(row.node,3);
+        row.columns = columns;
         columns[0].dateInput = Bootstrap.createElement('input',inputCss,columns[0].node);
         columns[0].dateInput.node.type = 'date';
         columns[1].buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm'],columns[1].node);
 
         let buttonQuantity = 3;
         let iconClasses = Array.from(Array(buttonQuantity)).map(()=>['fas','fa-flag']);
-        console.log(iconClasses);
 
         let buttonClasses = ['btn-outline-info','btn-outline-warning','btn-outline-danger'].map((elem,index)=>index === 0 ? [elem,'border-0','active'] : [elem,'border-0']);
 
@@ -34,14 +35,16 @@ let TaskCreator = (()=>{
                 obj.node.icon = Bootstrap.createElement('i',iconClasses[index],obj.node);
             }))(columns[1].buttonGroup.node,3,buttonClasses, iconClasses);
 
-        let newTaskButton = Bootstrap.createElement('div',['btn','btn-success', 'btn-sm', 'rounded-circle'],columns[2].node);
-        let newTaskIcon = Bootstrap.createElement('i',['fas','fa-plus'],newTaskButton.node);
-        newTaskButton.icon = newTaskIcon;
-        columns[2].newTaskButton = newTaskButton;
-
+        return row
     })(form.rows[1], inputCssClasses);
 
-    return {node}
+    let newTask = ((parentNode)=>{
+        let obj =  Bootstrap.createElement('div',['btn','btn-success', 'btn-sm', 'rounded-circle'],parentNode);
+        let icon = Bootstrap.createElement('i',['fas','fa-plus'],obj.node);
+        buttons.newTask = obj;
+    })(bottom.columns[2].node);
+
+    return {buttons,node}
 })();
 
 module.exports = {

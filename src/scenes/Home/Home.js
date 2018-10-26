@@ -16,6 +16,11 @@ const Home = ((project)=>{
     container.row.col = Bootstrap.createElement('div',['col','col-sm','d-flex', 'flex-column', 'justify-content-center'],container.row.node);
     container.row.col.node.appendChild(TaskCreator.node);
 
+    let testFn = ()=>{console.log('Hellou!')};
+    TaskCreator.buttons.newTask.node.addEventListener('click',testFn);
+
+    console.log(TaskCreator.buttons.newTask);
+
     return {node, taskListContainer}
 })(ToDo.currentProject);
 
