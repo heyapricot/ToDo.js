@@ -23,7 +23,7 @@ const TaskForm = ((inputCss)=>{
     let date = ((parentNode, inputCss)=>{
         let input = Bootstrap.createElement('input',inputCss,parentNode);
         input.node.type = 'date';
-        input.value = ()=>{ return input.node.value};
+        input.value = ()=>{ return input.node.valueAsDate};
         return input;
     })(rows[1].columns[0].node, inputCss);
 

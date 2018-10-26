@@ -15,8 +15,8 @@ const ToDo = ((defaultProjectName)=>{
         projects.list.push(project);
         return project
     };
-    let addTask = (description, project = currentProject)=>{
-        return project.addTask(description)
+    let addTask = (description, date = Date.now(), prioirity, project = currentProject)=>{
+        return project.addTask(description, date, project)
     };
     return {addProject,addTask,currentProject,projects}
 })('inbox');
