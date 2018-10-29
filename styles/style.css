@@ -6,8 +6,12 @@ body {
     background-color: #212529;
 }
 
+#projectHeader {
+    height: 10vh;
+}
+
 #taskList{
-    height: 85vh;
+    height: 75vh;
 }
 
 #taskList #listColumn {
@@ -15,6 +19,6 @@ body {
     overflow-scrolling: touch;
 }
 
-#taskCreatorContainer {
+#taskCreatorContainer{
     height: 15vh;
 }

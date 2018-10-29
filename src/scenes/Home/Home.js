@@ -1,14 +1,22 @@
 const {Bootstrap} = require('./components/Bootstrap/Bootstrap');
+const {ProjectHeader} = require('./components/ProjectHeader/ProjectHeader');
 const {TaskForm} = require('./components/TaskForm/TaskForm');
 const {TaskList} = require('./components/TaskList/TaskList');
 const {ToDo} = require('./components/ToDo/ToDo');
 const Home = ((project)=>{
     let node = document.createElement('section');
     node.id = 'main';
+    node.appendChild(ProjectHeader.node);
     let taskListContainer = Bootstrap.createElement('div',['container'],node);
     taskListContainer.node.id = 'taskList';
     taskListContainer.node.appendChild(TaskList.node);
-    TaskList.header.renderOptions(ToDo.projectNames());
+    let onProjectSelect = (index)=>{
+        ToDo.setActiveProject(index);
+        console.log(`Active project:`);
+        console.log(ToDo.activeProject);
+    };
+    ProjectHeader.setCallback(onProjectSelect);
+    ProjectHeader.renderOptions(ToDo.projectNames(),onProjectSelect);
 
     let container = Bootstrap.createElement('div',['container'],node);
     container.node.id = 'taskCreatorContainer';
