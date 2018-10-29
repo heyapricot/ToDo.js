@@ -8,7 +8,7 @@ const Home = ((project)=>{
     let taskListContainer = Bootstrap.createElement('div',['container'],node);
     taskListContainer.node.id = 'taskList';
     taskListContainer.node.appendChild(TaskList.node);
-    TaskList.setHeaderText(project.name);
+    TaskList.header.renderOptions(ToDo.projectNames());
 
     let container = Bootstrap.createElement('div',['container'],node);
     container.node.id = 'taskCreatorContainer';

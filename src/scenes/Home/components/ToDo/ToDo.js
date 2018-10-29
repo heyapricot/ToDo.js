@@ -18,7 +18,8 @@ const ToDo = ((defaultProjectName)=>{
     let addTask = (description, date = Date.now(), prioirity, project = currentProject)=>{
         return project.addTask(description, date, project)
     };
-    return {addProject,addTask,currentProject,projects}
+    let projectNames = ()=>projects.list.map((project)=>project.name);
+    return {addProject,addTask,currentProject,projects, projectNames}
 })('inbox');
 
 module.exports = {
