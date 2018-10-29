@@ -7,9 +7,8 @@ const Home = ((project)=>{
     let node = document.createElement('section');
     node.id = 'main';
     node.appendChild(ProjectHeader.node);
-    let taskListContainer = Bootstrap.createElement('div',['container'],node);
-    taskListContainer.node.id = 'taskList';
-    taskListContainer.node.appendChild(TaskList.node);
+    node.appendChild(TaskList.node);
+
     let onProjectSelect = (index)=>{
         ToDo.setActiveProject(index);
         console.log(`Active project:`);
