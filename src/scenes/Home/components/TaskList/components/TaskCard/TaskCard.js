@@ -1,25 +1,23 @@
 const {Bootstrap} = require('../../../Bootstrap/Bootstrap');
 let TaskCard = (descriptionText, dateText)=>{
     const rowQuantity = 2;
-    let obj = Bootstrap.createElement('form',['card','p-2','bg-transparent','border-secondary']);
-    obj.rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'],obj.node));
-    let topRow = obj.rows[0];
-    topRow.column = Bootstrap.createElement('div',['col'],topRow.node);
-    let description = Bootstrap.createElement('input',['form-control', 'form-control-sm', 'bg-transparent', 'border-0', 'text-light'],topRow.column.node);
+    let form = Bootstrap.createElement('form',['card','p-2','bg-transparent','border-secondary']);
+    let rows = Array.from(Array(rowQuantity)).map(()=> Bootstrap.createElement('div',['form-row'],form.node));
+    rows[0].column = Bootstrap.createElement('div',['col'],rows[0].node);
+    let description = Bootstrap.createElement('input',['form-control', 'form-control-sm', 'bg-transparent', 'border-0', 'text-light'],rows[0].column.node);
     description.node.value = descriptionText;
-    let bottomRow = obj.rows[1];
-    bottomRow.column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],bottomRow.node);
-    bottomRow.date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-secondary','align-self-center'],bottomRow.column.node);
-    bottomRow.date.node.textContent = dateText;
-    let buttons = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],bottomRow.column.node);
-    bottomRow.buttons = buttons;
+    rows[1].column = Bootstrap.createElement('div',['col', 'd-flex', 'justify-content-between'],rows[1].node);
+    let date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-secondary','align-self-center'],rows[1].column.node);
+    date.node.textContent = dateText;
+    let buttons = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],rows[1].column.node);
     buttons.remove = Bootstrap.createElement('div',['btn', 'btn-danger'],buttons.node);
     buttons.remove.icon = Bootstrap.createElement('i',['fas','fa-times'],buttons.remove.node);
-    buttons.remove.node.addEventListener('click', ()=>{obj.node.remove()});
+    buttons.remove.node.addEventListener('click', ()=>{form.node.remove()});
     buttons.done = Bootstrap.createElement('div',['btn', 'btn-success'],buttons.node);
     buttons.done.icon = Bootstrap.createElement('i',['fas','fa-check'],buttons.done.node);
-    buttons.done.node.addEventListener('click', ()=>{obj.node.remove()});
-    return obj;
+    buttons.done.node.addEventListener('click', ()=>{form.node.remove()});
+    form.buttons = buttons;
+    return form;
 };
 
 module.exports = {

@@ -8,10 +8,12 @@ const Project = (name)=>{
         return task;
     };
 
+    let removeTask = (Task)=>{taskList.splice(taskList.indexOf(Task),1)};
+
     let tasks = ()=>[...taskList];
     let taskDescriptions = ()=>taskList.map((task)=>task.description);
 
-    return {addTask,name,tasks, taskDescriptions}
+    return {addTask,name, removeTask, tasks, taskDescriptions}
 };
 
 module.exports = {

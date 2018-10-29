@@ -19,8 +19,12 @@ const Home = ((project)=>{
     let onNewTaskClick = ()=>{
         let taskValues = TaskForm.getValues();
         let task = ToDo.addTask(taskValues[0], taskValues[1]);
-        let tc = TaskList.appendTask(task.description, task.due.formatted);
-        console.log(taskValues);
+        let tc = TaskList.appendTask(task.description, task.formattedDate());
+        let closure = ()=>{
+            ToDo.currentProject.removeTask(task);
+            console.log(ToDo.currentProject.tasks());
+        };
+        tc.buttons.remove.node.addEventListener('click',closure);
         console.log(ToDo.currentProject.tasks());
     };
     TaskForm.newTask.onClick(onNewTaskClick);

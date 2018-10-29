@@ -20,10 +20,6 @@ let TaskList = (()=>{
         return tc;
     };
 
-    let init = (()=>{
-        Array.from(Array(2)).map(()=>appendTask('This is a test', '31/10/2018'))
-    })();
-
     return {appendTask,body, head, node, setHeaderText}
 })();
 
