@@ -15,10 +15,12 @@ const Home = (()=>{
 
     let onClickNewTask = ()=>{
         let taskValues = TaskForm.getValues();
-        let task = ToDo.addTask(taskValues[0], taskValues[1]);
-        let tc = TaskList.appendTask(task.description, task.formattedDate());
-        let closure = ()=> onClickRemoveCard(task);
-        tc.buttons[0].setClickFunction(closure);
+        if (taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
+            let task = ToDo.addTask(taskValues[0], taskValues[1]);
+            let tc = TaskList.appendTask(task.description, task.formattedDate());
+            let closure = ()=> onClickRemoveCard(task);
+            tc.buttons[0].setClickFunction(closure);
+        }
         console.log(ToDo.getActiveProject().tasks());
     };
 
