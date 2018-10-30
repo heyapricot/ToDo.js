@@ -13,6 +13,8 @@ let TaskCard = (descriptionText, dateText)=>{
     description.node.value = descriptionText;
     let date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-secondary','align-self-center'],columns[1].node);
     date.node.textContent = dateText;
+    let priority = UI.PriorityPicker(3,['btn-outline-info','btn-outline-warning','btn-outline-danger'],['fas','fa-flag']);
+    columns[1].node.appendChild(priority.node);
     let buttonGroup = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],columns[1].node);
     let buttons = ((parentNode)=>{
         let buttonCss = [['btn', 'btn-danger'], ['btn', 'btn-success']];
