@@ -9,8 +9,13 @@ const ToDo = ((defaultProjectName)=>{
         projects.push(project);
         return project
     };
-    let addTask = (description, date = Date.now(), prioirity, project = activeProject)=>{
+    let addTask = (description, date = Date.now(), priority, project = activeProject)=>{
         return project.addTask(description, date, project)
+    };
+
+    let completeTask = (task)=>{
+        activeProject.removeTask(task);
+        projects[1].addTask(task.description, task.dueDate, task.priority);
     };
 
     let getActiveProject = ()=>activeProject;
@@ -22,7 +27,7 @@ const ToDo = ((defaultProjectName)=>{
     };
 
     let projectNames = ()=>projects.map((project)=>project.name);
-    return {addProject,addTask, getActiveProject,getProject, setActiveProject, projects, projectNames}
+    return {addProject,addTask, completeTask, getActiveProject,getProject, setActiveProject, projects, projectNames}
 })('inbox');
 
 module.exports = {

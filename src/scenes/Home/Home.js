@@ -13,13 +13,19 @@ const Home = (()=>{
         console.log(ToDo.getActiveProject().tasks());
     };
 
+    let onClickDone = (task)=>{
+        ToDo.completeTask(task);
+    };
+
     let onClickNewTask = ()=>{
         let taskValues = TaskForm.getValues();
         if (taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
             let task = ToDo.addTask(taskValues[0], taskValues[1]);
             let tc = TaskList.appendTask(task.description, task.formattedDate());
-            let closure = ()=> onClickRemoveCard(task);
-            tc.buttons[0].setClickFunction(closure);
+            let removeClosure = ()=> onClickRemoveCard(task);
+            tc.buttons[0].setClickFunction(removeClosure);
+            let doneClosure = ()=> onClickDone(task);
+            tc.buttons[1].setClickFunction(doneClosure);
         }
         console.log(ToDo.getActiveProject().tasks());
     };

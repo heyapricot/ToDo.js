@@ -5,9 +5,9 @@ const priorityLevels = {
     "LOW":2
 };
 let Task = (description, dueDate, priority)=>{
-    let finished = false;
     let formattedDate = ()=>dueDate.toDateString();
-    return {description, dueDate, formattedDate, finished, priority}
+    let values = ()=>[description, dueDate, priority];
+    return {description, dueDate, formattedDate, priority, values}
 };
 
 module.exports = {

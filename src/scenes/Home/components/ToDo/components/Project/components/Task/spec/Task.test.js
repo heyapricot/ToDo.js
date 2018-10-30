@@ -12,8 +12,5 @@ describe('Task',()=>{
         it('has a priority level', ()=>{
             expect(task.priority).toEqual(priority);
         });
-        it('has a finished value of false by default', ()=>{
-            expect(task.finished).toEqual(false);
-        });
     });
 });
