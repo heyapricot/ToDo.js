@@ -19,7 +19,7 @@ const Home = (()=>{
 
     let onClickNewTask = ()=>{
         let taskValues = TaskForm.getValues();
-        if (taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
+        if (ToDo.getActiveProject().name !== 'completed' && taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
             let task = ToDo.addTask(taskValues[0], taskValues[1]);
             let tc = TaskList.appendTask(task.description, task.formattedDate());
             let removeClosure = ()=> onClickRemoveCard(task);
@@ -31,9 +31,12 @@ const Home = (()=>{
     };
 
     let onSelectProject = (index)=>{
-        ToDo.setActiveProject(index);
+        let activeProject = ToDo.setActiveProject(index);
         TaskList.clearList();
-        TaskList.renderTasks(ToDo.getActiveProject().tasks());
+        let taskCards = TaskList.renderTasks(activeProject.tasks());
+        if(activeProject.name === 'completed'){
+            taskCards.forEach((tc)=>tc.markAsCompleted());
+        }
     };
     ProjectHeader.setCallback(onSelectProject);
 

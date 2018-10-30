@@ -22,9 +22,7 @@ const ToDo = ((defaultProjectName)=>{
 
     let getProject = (index)=>projects[index];
 
-    let setActiveProject = (index)=>{
-        activeProject = projects[index];
-    };
+    let setActiveProject = (index)=>activeProject = projects[index];
 
     let projectNames = ()=>projects.map((project)=>project.name);
     return {addProject,addTask, completeTask, getActiveProject,getProject, setActiveProject, projects, projectNames}

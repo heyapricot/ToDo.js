@@ -13,22 +13,26 @@ let TaskCard = (descriptionText, dateText)=>{
     description.node.value = descriptionText;
     let date = Bootstrap.createElement('span',['badge', 'badge-pill', 'badge-secondary','align-self-center'],columns[1].node);
     date.node.textContent = dateText;
+    let buttonGroup = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],columns[1].node);
     let buttons = ((parentNode)=>{
-        let buttonGroup = Bootstrap.createElement('div',['btn-group', 'btn-group-sm'],parentNode);
-        let node = buttonGroup.node;
         let buttonCss = [['btn', 'btn-danger'], ['btn', 'btn-success']];
         let iconCss = [['fas','fa-times'], ['fas', 'fa-check']];
         let buttons = Array.from(Array(buttonCss.length)).map(
             (value,index)=>{
-                let button = UI.ActionButton(buttonCss[index], iconCss[index], buttonGroup.node);
+                let button = UI.ActionButton(buttonCss[index], iconCss[index], parentNode);
                 button.setClickFunction(()=>{container.node.remove()});
                 return button
             }
         );
         return buttons;
-    })(columns[1].node);
+    })(buttonGroup.node);
 
-    return {buttons, node}
+    let markAsCompleted = ()=>{
+        buttonGroup.node.remove();
+        ['text-light', 'text-muted'].forEach((cssClass)=>description.node.classList.toggle(cssClass));
+    };
+
+    return {buttons, markAsCompleted, node}
 };
 
 module.exports = {
