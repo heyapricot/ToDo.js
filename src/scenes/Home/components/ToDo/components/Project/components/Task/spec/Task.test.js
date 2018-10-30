@@ -9,9 +9,6 @@ describe('Task',()=>{
         it('has a description',()=>{
             expect(task.description).toEqual(description);
         });
-        it('has a due date',()=>{
-            expect(task.due.formatted).toEqual(format(dueDate,'MM/dd/yyyy'));
-        });
         it('has a priority level', ()=>{
             expect(task.priority).toEqual(priority);
         });

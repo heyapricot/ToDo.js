@@ -10,6 +10,6 @@ describe('Project',()=>{
     it('can store a task',()=>{
         let description = 'test';
         project.addTask(description);
-        expect(project.tasks.descriptions()).toContain(description);
+        expect(project.taskDescriptions()).toContain(description);
     })
 });
