@@ -19,6 +19,6 @@ body {
     overflow-scrolling: touch;
 }
 
-#taskCreatorContainer{
+#taskCreator{
     height: 15vh;
 }
