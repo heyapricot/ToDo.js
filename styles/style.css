@@ -14,7 +14,7 @@ body {
     height: 75vh;
 }
 
-#taskList #listColumn {
+#listColumn {
     overflow-y: scroll;
     overflow-scrolling: touch;
 }

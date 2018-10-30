@@ -9,6 +9,7 @@ let TaskList = (()=>{
         let row = Bootstrap.createElement('div',['row','h-100'], parentNode);
         let node = row.node;
         let column = Bootstrap.createElement('div',['col', 'h-100','d-flex','flex-column'],row.node);
+        column.node.id = 'listColumn';
         let addCell = (node)=>column.node.appendChild(node);
         return {addCell,node}
     })(node);

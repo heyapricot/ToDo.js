@@ -1,5 +1,15 @@
 const {Bootstrap} = require('../Bootstrap/Bootstrap');
 const UI = (()=>{
+    let ActionButton = (buttonCss, iconCss, parentNode = NaN)=>{
+        let button = Bootstrap.createElement('div',buttonCss,parentNode);
+        let node = button.node;
+        let icon = Bootstrap.createElement('i',iconCss,button.node);
+
+        let setClickFunction = (callbackfn)=>node.addEventListener('click',callbackfn);
+
+        return {node, setClickFunction}
+    };
+
     let PriorityPicker = (buttonQuantity, buttonCss, iconCss)=>{
         let activeButtonIndex = 0;
         let buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm']);
@@ -22,7 +32,7 @@ const UI = (()=>{
         return {buttons,node,value};
     };
 
-    return {PriorityPicker}
+    return {ActionButton, PriorityPicker}
 })();
 
 module.exports = {

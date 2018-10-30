@@ -1,4 +1,3 @@
-const {Bootstrap} = require('./components/Bootstrap/Bootstrap');
 const {ProjectHeader} = require('./components/ProjectHeader/ProjectHeader');
 const {TaskForm} = require('./components/TaskForm/TaskForm');
 const {TaskList} = require('./components/TaskList/TaskList');
@@ -9,24 +8,24 @@ const Home = (()=>{
     [ProjectHeader, TaskList, TaskForm].forEach((component)=>node.appendChild(component.node));
     ProjectHeader.renderOptions(ToDo.projectNames());
 
-    let onRemoveClick = (task)=>{
+    let onClickRemoveCard = (task)=>{
         ToDo.getActiveProject().removeTask(task);
         console.log(ToDo.getActiveProject().tasks());
     };
 
-    let onProjectSelect = (index)=>ToDo.setActiveProject(index);
-    ProjectHeader.setCallback(onProjectSelect);
-
-    let onNewTaskClick = ()=>{
+    let onClickNewTask = ()=>{
         let taskValues = TaskForm.getValues();
         let task = ToDo.addTask(taskValues[0], taskValues[1]);
         let tc = TaskList.appendTask(task.description, task.formattedDate());
-        let closure = ()=> onRemoveClick(task);
-        tc.buttons.remove.node.addEventListener('click',closure);
+        let closure = ()=> onClickRemoveCard(task);
+        tc.buttons[0].setClickFunction(closure);
         console.log(ToDo.getActiveProject().tasks());
     };
 
-    TaskForm.onNewTaskClick(onNewTaskClick);
+    let onSelectProject = (index)=>ToDo.setActiveProject(index);
+    ProjectHeader.setCallback(onSelectProject);
+
+    TaskForm.onClickNewTask(onClickNewTask);
 
     return {node}
 })();

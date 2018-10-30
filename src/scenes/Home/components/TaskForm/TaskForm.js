@@ -44,9 +44,9 @@ const TaskForm = ((inputCss)=>{
 
     let getValues = ()=>[form.description.value(), form.date.value(), form.priority.value()];
 
-    let onNewTaskClick = (callback)=>form.newTask.node.addEventListener('click',callback);
+    let onClickNewTask = (callback)=>form.newTask.node.addEventListener('click',callback);
 
-    return {node, getValues, onNewTaskClick};
+    return {node, getValues, onClickNewTask};
 })(['form-control','form-control-sm', 'bg-transparent', 'border-0', 'text-light']);
 
 module.exports = {
