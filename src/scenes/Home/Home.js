@@ -9,6 +9,11 @@ const Home = (()=>{
     [ProjectHeader, TaskList, TaskForm].forEach((component)=>node.appendChild(component.node));
     ProjectHeader.renderOptions(ToDo.projectNames());
 
+    let onRemoveClick = (task)=>{
+        ToDo.getActiveProject().removeTask(task);
+        console.log(ToDo.getActiveProject().tasks());
+    };
+
     let onProjectSelect = (index)=>ToDo.setActiveProject(index);
     ProjectHeader.setCallback(onProjectSelect);
 
@@ -16,10 +21,7 @@ const Home = (()=>{
         let taskValues = TaskForm.getValues();
         let task = ToDo.addTask(taskValues[0], taskValues[1]);
         let tc = TaskList.appendTask(task.description, task.formattedDate());
-        let closure = ()=>{
-            ToDo.getActiveProject().removeTask(task);
-            console.log(ToDo.getActiveProject().tasks());
-        };
+        let closure = ()=> onRemoveClick(task);
         tc.buttons.remove.node.addEventListener('click',closure);
         console.log(ToDo.getActiveProject().tasks());
     };
