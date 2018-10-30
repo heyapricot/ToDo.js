@@ -29,7 +29,7 @@ const UI = (()=>{
             activeButtonIndex = index;
         };
         let value = ()=> activeButtonIndex;
-        return {buttons,node,value};
+        return {buttons,node,setActiveButton,value};
     };
 
     return {ActionButton, PriorityPicker}

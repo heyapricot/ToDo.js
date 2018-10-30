@@ -22,6 +22,7 @@ const Home = (()=>{
         if (ToDo.getActiveProject().name !== 'completed' && taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
             let task = ToDo.addTask(taskValues[0], taskValues[1]);
             let tc = TaskList.appendTask(task.description, task.formattedDate());
+            tc.setPriority(taskValues[2]);
             let removeClosure = ()=> onClickRemoveCard(task);
             tc.buttons[0].setClickFunction(removeClosure);
             let doneClosure = ()=> onClickDone(task);

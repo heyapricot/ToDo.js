@@ -34,7 +34,9 @@ let TaskCard = (descriptionText, dateText)=>{
         ['text-light', 'text-muted'].forEach((cssClass)=>description.node.classList.toggle(cssClass));
     };
 
-    return {buttons, markAsCompleted, node}
+    let setPriority = (number)=>priority.setActiveButton(number);
+
+    return {buttons, markAsCompleted, node, setPriority}
 };
 
 module.exports = {
