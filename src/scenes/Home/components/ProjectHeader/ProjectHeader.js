@@ -6,17 +6,18 @@ const ProjectHeader = (()=>{
     let column = Bootstrap.createElement('div',['col-6'], row.node);
     let select = Bootstrap.createElement('select',['custom-select', 'bg-transparent', 'border-0', 'text-light', 'text-center', 'text-capitalize'], column.node);
     let node = container.node;
+    let callbacks = [];
 
     let cleanOptions = ()=>{ while(select.node.hasChildNodes()){ select.node.removeChild(select.node.firstChild) } };
 
     let changeEventHandler = (event)=>{
         let index = Number.parseInt(event.target.value);
-        console.log(`${event.target.value} was selected`);
+        //console.log(`${event.target.value} was selected`);
         onSelectChange(index);
     };
 
     let onSelectChange = (index)=>{
-        select.callback(index);
+        callbacks.forEach((callback)=>callback(index));
     };
 
     let renderOptions = (projectNames) => {
@@ -29,9 +30,10 @@ const ProjectHeader = (()=>{
         });
     };
 
-    let setCallback = (callback)=> select.callback = callback;
+    let setCallback = (callback)=> callbacks.push(callback);
 
     select.node.onchange = changeEventHandler;
+
     return {node, renderOptions, setCallback};
 })();
 

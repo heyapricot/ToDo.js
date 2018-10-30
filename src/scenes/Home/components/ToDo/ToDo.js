@@ -13,12 +13,16 @@ const ToDo = ((defaultProjectName)=>{
         return project.addTask(description, date, project)
     };
 
+    let getActiveProject = ()=>activeProject;
+
     let getProject = (index)=>projects[index];
 
-    let setActiveProject = (index)=>activeProject = projects[index];
+    let setActiveProject = (index)=>{
+        activeProject = projects[index];
+    };
 
     let projectNames = ()=>projects.map((project)=>project.name);
-    return {activeProject, addProject,addTask, getProject, setActiveProject, projects, projectNames}
+    return {addProject,addTask, getActiveProject,getProject, setActiveProject, projects, projectNames}
 })('inbox');
 
 module.exports = {
