@@ -37,7 +37,9 @@ let TaskCard = (descriptionText, dateText)=>{
 
     let setPriority = (number)=>priority.setActiveButton(number);
 
-    return {buttons, markAsCompleted, node, setPriority}
+    let setValueChangeFunction = (callback)=>priority.addCallback(callback);
+
+    return {buttons, markAsCompleted, node, setPriority, setValueChangeFunction}
 };
 
 module.exports = {

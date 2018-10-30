@@ -27,6 +27,7 @@ const Home = (()=>{
             tc.buttons[0].setClickFunction(removeClosure);
             let doneClosure = ()=> onClickDone(task);
             tc.buttons[1].setClickFunction(doneClosure);
+            tc.setValueChangeFunction(()=>console.log('value changed'));
         }
         console.log(ToDo.getActiveProject().tasks());
     };

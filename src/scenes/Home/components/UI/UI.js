@@ -12,6 +12,7 @@ const UI = (()=>{
 
     let PriorityPicker = (buttonQuantity, buttonCss, iconCss)=>{
         let activeButtonIndex = 0;
+        let addCallback = (callbackfn)=>callbacks.push(callbackfn);
         let buttonGroup = Bootstrap.createElement('div', ['btn-group', 'btn-group-sm']);
         let buttons = ((parentNode, quantity, cssClasses, iconClasses )=> Array.from(Array(quantity)).map(
             (elem,index)=>{
@@ -19,17 +20,22 @@ const UI = (()=>{
                 let icnCss = Array.from(Array(buttonQuantity)).map(()=>iconClasses);
                 let btn = Bootstrap.createElement('div',['btn', ...btnCss[index]],parentNode);
                 btn.node.icon = Bootstrap.createElement('i',icnCss[index],btn.node);
-                let closure = ()=>{setActiveButton(index)};
+                let closure = ()=>{
+                    setActiveButton(index);
+                    onValueChange();
+                };
                 btn.node.addEventListener('click',closure);
                 return btn;
             }))(buttonGroup.node,buttonQuantity,buttonCss, iconCss);
+        let callbacks = [];
         let node = buttonGroup.node;
+        let onValueChange = ()=>callbacks.forEach((callback)=>callback());
         let setActiveButton= (index = 0)=>{
             [buttons[activeButtonIndex],buttons[index]].forEach((button)=>{button.node.classList.toggle('active')});
             activeButtonIndex = index;
         };
         let value = ()=> activeButtonIndex;
-        return {buttons,node,setActiveButton,value};
+        return {addCallback,buttons,node,setActiveButton,value};
     };
 
     return {ActionButton, PriorityPicker}
