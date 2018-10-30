@@ -11,7 +11,12 @@ let TaskList = (()=>{
         let column = Bootstrap.createElement('div',['col', 'h-100','d-flex','flex-column'],row.node);
         column.node.id = 'listColumn';
         let addCell = (node)=>column.node.appendChild(node);
-        return {addCell,node}
+        let clear = ()=>{
+            while(column.node.hasChildNodes()){
+                column.node.firstChild.remove();
+            }
+        };
+        return {addCell,clear,node}
     })(node);
 
     let appendTask = (desciptionText, dateText)=>{
@@ -20,7 +25,17 @@ let TaskList = (()=>{
         return tc;
     };
 
-    return {appendTask,node}
+    let clearList = ()=>{
+        table.clear();
+    };
+
+    let renderTasks = (taskList)=>{
+        taskList.forEach((task)=>{
+            appendTask(task.description, task.formattedDate())
+        })
+    };
+
+    return {appendTask,clearList, node, renderTasks}
 })();
 
 module.exports = {

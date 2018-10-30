@@ -30,7 +30,11 @@ const Home = (()=>{
         console.log(ToDo.getActiveProject().tasks());
     };
 
-    let onSelectProject = (index)=>ToDo.setActiveProject(index);
+    let onSelectProject = (index)=>{
+        ToDo.setActiveProject(index);
+        TaskList.clearList();
+        TaskList.renderTasks(ToDo.getActiveProject().tasks());
+    };
     ProjectHeader.setCallback(onSelectProject);
 
     TaskForm.onClickNewTask(onClickNewTask);
