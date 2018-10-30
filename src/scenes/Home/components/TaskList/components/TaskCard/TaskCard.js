@@ -31,6 +31,7 @@ let TaskCard = (descriptionText, dateText)=>{
 
     let markAsCompleted = ()=>{
         buttonGroup.node.remove();
+        priority.node.remove();
         ['text-light', 'text-muted'].forEach((cssClass)=>description.node.classList.toggle(cssClass));
     };
 
