@@ -27,7 +27,8 @@ const Home = (()=>{
             tc.buttons[0].setClickFunction(removeClosure);
             let doneClosure = ()=> onClickDone(task);
             tc.buttons[1].setClickFunction(doneClosure);
-            tc.setValueChangeFunction(()=>console.log('value changed'));
+            let priorityChangeClosure = ()=>{ task.priority = tc.getPriority() };
+            tc.setValueChangeFunction(priorityChangeClosure);
         }
         console.log(ToDo.getActiveProject().tasks());
     };
@@ -40,6 +41,7 @@ const Home = (()=>{
             taskCards.forEach((tc)=>tc.markAsCompleted());
         }
     };
+
     ProjectHeader.setCallback(onSelectProject);
 
     TaskForm.onClickNewTask(onClickNewTask);

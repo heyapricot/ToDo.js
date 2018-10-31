@@ -29,6 +29,8 @@ let TaskCard = (descriptionText, dateText)=>{
         return buttons;
     })(buttonGroup.node);
 
+    let getPriority = ()=>{return priority.value()};
+
     let markAsCompleted = ()=>{
         buttonGroup.node.remove();
         priority.node.remove();
@@ -39,7 +41,7 @@ let TaskCard = (descriptionText, dateText)=>{
 
     let setValueChangeFunction = (callback)=>priority.addCallback(callback);
 
-    return {buttons, markAsCompleted, node, setPriority, setValueChangeFunction}
+    return {buttons, getPriority, markAsCompleted, node, setPriority, setValueChangeFunction}
 };
 
 module.exports = {

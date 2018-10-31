@@ -10,7 +10,7 @@ const ToDo = ((defaultProjectName)=>{
         return project
     };
     let addTask = (description, date = Date.now(), priority, project = activeProject)=>{
-        return project.addTask(description, date, project)
+        return project.addTask(description, date, priority)
     };
 
     let completeTask = (task)=>{
