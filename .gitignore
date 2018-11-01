@@ -1,7 +1,5 @@
 *.idea
 **/bundle.js
-main.js
-main.js.map
 
 # Logs
 logs
