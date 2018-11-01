@@ -10,7 +10,6 @@ const Home = (()=>{
 
     let onClickRemoveCard = (task)=>{
         ToDo.getActiveProject().removeTask(task);
-        console.log(ToDo.getActiveProject().tasks());
     };
 
     let onClickDone = (task)=>{
@@ -20,14 +19,13 @@ const Home = (()=>{
     let onClickNewTask = ()=>{
         let taskValues = TaskForm.getValues();
         if (ToDo.getActiveProject().name !== 'completed' && taskValues.reduce((acc,val)=>((val !== 'undefined' && val !== null && val !== '') && acc), true)){
-            let task = ToDo.addTask(taskValues[0], taskValues[1]);
-            let tc = TaskList.appendTask(task.description, task.formattedDate());
-            tc.setPriority(taskValues[2]);
+            let task = ToDo.addTask(taskValues[0], taskValues[1], taskValues[2]);
+            let tc = TaskList.appendTask(task.description, task.formattedDate(), task.priority);
             let removeClosure = ()=> onClickRemoveCard(task);
             tc.buttons[0].setClickFunction(removeClosure);
             let doneClosure = ()=> onClickDone(task);
             tc.buttons[1].setClickFunction(doneClosure);
-            let priorityChangeClosure = ()=>{ task.priority = tc.getPriority() };
+            let priorityChangeClosure = ()=>task.priority = tc.getPriority();
             tc.setValueChangeFunction(priorityChangeClosure);
         }
         console.log(ToDo.getActiveProject().tasks());

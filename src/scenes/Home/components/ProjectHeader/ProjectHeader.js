@@ -12,7 +12,6 @@ const ProjectHeader = (()=>{
 
     let changeEventHandler = (event)=>{
         let index = Number.parseInt(event.target.value);
-        //console.log(`${event.target.value} was selected`);
         onSelectChange(index);
     };
 

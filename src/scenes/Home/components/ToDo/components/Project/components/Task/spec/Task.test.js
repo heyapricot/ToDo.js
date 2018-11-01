@@ -12,5 +12,10 @@ describe('Task',()=>{
         it('has a priority level', ()=>{
             expect(task.priority).toEqual(priority);
         });
+        it('can have its priority modified', ()=>{
+            let priority = priorityLevels.LOW;
+            task.priority = priority;
+            expect(task.priority).toEqual(priority);
+        })
     });
 });

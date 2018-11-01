@@ -19,8 +19,8 @@ let TaskList = (()=>{
         return {addCell,clear,node}
     })(node);
 
-    let appendTask = (descriptionText, dateText)=>{
-        let tc = TaskCard(descriptionText, dateText);
+    let appendTask = (descriptionText, dateText, priorityLevel)=>{
+        let tc = TaskCard(descriptionText, dateText, priorityLevel);
         table.addCell(tc.node);
         return tc;
     };
@@ -29,7 +29,10 @@ let TaskList = (()=>{
         table.clear();
     };
 
-    let renderTasks = (taskList)=>taskList.map((task)=>appendTask(task.description, task.formattedDate()));
+    let renderTasks = (taskList)=>{
+        let output = taskList.map((task)=>appendTask(task.description, task.formattedDate(), task.priority));
+        return output;
+    };
 
     return {appendTask,clearList, node, renderTasks}
 })();
